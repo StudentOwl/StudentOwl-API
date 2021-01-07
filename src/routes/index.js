@@ -5,8 +5,13 @@ const Register=require('../models/register');
 router.get('/', (req, res) => {
     res.render('index');
   });
-  router.get('/:nameMatter', (req, res, next) => {
-    res.render('index');
+  router.get('/:nameMatter',async (req, res, next) => {
+    let{nameMatter} = req.params;
+    const register = await Register.find({"subject_matter":nameMatter});
+    
+    console.log(register);
+    
+    res.render('index', {register});
   });
 
 router.post('/matter/:subject_matter/nameStudent/:userName',async(req,res,next)=>{
@@ -20,5 +25,6 @@ await register.save();
   
 
 });
+
 
 module.exports=router;
