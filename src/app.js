@@ -2,9 +2,20 @@ const path=require('path');
 const express = require('express');
 const morgan = require('morgan');
 const app= express();
+const MongoClient = require('mongoose');
 
 // importing routes
 const indexRoutes= require('./routes/index');
+//connecion a la base de datos
+/*const connectionParams={
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true 
+}*/
+MongoClient.connect("mongodb+srv://usuario:usuario123@cluster0.8dtle.mongodb.net/ProyectoStudentOwl?retryWrites=true&w=majority",{ useNewUrlParser: true , useUnifiedTopology: true })
+.then(console.log('DB conectada'))
+.catch (err => console.log(err));
+
 
 //settings
 app.set('port',process.env.PORT || 3000);
