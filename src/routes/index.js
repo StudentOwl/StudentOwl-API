@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
   });
 
  //Peticion get devuelve todo los registro de la materia
-  router.get('/API/V1.0/:nameMatter',async (req, res, next) => {
+  router.get('/API/V1.0/:nameMatter',cors(),async (req, res, next) => {
     let{nameMatter} = req.params;
     const register = await Register.find({"subject_matter":nameMatter});
     
@@ -22,9 +22,7 @@ router.get('/', (req, res) => {
 
   //Peticion get con la materia y el nombre del usuario
   router.get('/API/V1.0/:subject_matter/:userName',async (req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
+  
     let{userName} = req.params;
     let{subject_matter} = req.params;
     const register = await Register.find({"userName":userName,"subject_matter":subject_matter});
