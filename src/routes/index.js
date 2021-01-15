@@ -22,11 +22,18 @@ router.get('/', (req, res) => {
 
   //Peticion get con la materia y el nombre del usuario
   router.get('/API/V1.0/:subject_matter/:userName',async (req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
     let{userName} = req.params;
     let{subject_matter} = req.params;
     const register = await Register.find({"userName":userName,"subject_matter":subject_matter});
     
     console.log(register);
+
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
   //  res.render('index', {register});
  return res.json(register);
   });
@@ -42,7 +49,7 @@ register.userName=req.params.userName;
 register.subject_matter=req.params.subject_matter;
 register.register.push(content);
 await register.save()
-    return res.json(req.body);
+
 });
 
 
