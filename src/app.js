@@ -2,7 +2,7 @@ const path=require('path');
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
-app.use(cors());
+
 const app= express();
 const MongoClient = require('mongoose');
 
@@ -25,6 +25,7 @@ app.set('view engine','ejs');
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
+app.use(cors());
 
 //routes
 app.use('/',indexRoutes);

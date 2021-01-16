@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
   });
 
  //Peticion get devuelve todo los registro de la materia
-  router.get('/API/V1.0/:nameMatter',cors(),async (req, res, next) => {
+  router.get('/API/V1.0/:nameMatter',async (req, res, next) => {
     let{nameMatter} = req.params;
     const register = await Register.find({"subject_matter":nameMatter});
     
