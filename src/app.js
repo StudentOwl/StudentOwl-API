@@ -1,36 +1,40 @@
-const path=require('path');
-const express = require('express');
-const morgan = require('morgan');
-const cors = require('cors');
+const path = require("path");
+const express = require("express");
+const morgan = require("morgan");
+const cors = require("cors");
 
-const app= express();
-const MongoClient = require('mongoose');
+const app = express();
+const MongoClient = require("mongoose");
 
 // importing routes
-const indexRoutes= require('./routes/index');
+const indexRoutes = require("./routes/index");
 
 //connecion a la base de datos
 
-MongoClient.connect("mongodb+srv://usuario:usuario123@cluster0.8dtle.mongodb.net/ProyectoStudentOwl?retryWrites=true&w=majority",{ useNewUrlParser: true , useUnifiedTopology: true })
-.then(console.log('DB conectada'))
-.catch (err => console.log(err));
+urlDB = `mongodb+srv://${}:${}@cluster0.8dtle.mongodb.net/${}${}`
 
+MongoClient.connect(
+  "mongodb+srv://usuario:usuario123@cluster0.8dtle.mongodb.net/ProyectoStudentOwl?retryWrites=true&w=majority",
+  { useNewUrlParser: true, useUnifiedTopology: true }
+)
+  .then(console.log("DB conectada"))
+  .catch(err => console.log(err));
 
 //settings
-app.set('port',process.env.PORT || 3000);
-app.set('views',path.join(__dirname+'/views'));
-app.set('view engine','ejs');
+app.set("port", process.env.PORT || 3000);
+app.set("views", path.join(__dirname + "/views"));
+app.set("view engine", "ejs");
 
 //middleware
-app.use(morgan('dev'));
-app.use(express.urlencoded({extended:false}));
+app.use(morgan("dev"));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
 
 //routes
-app.use('/',indexRoutes);
+app.use("/", indexRoutes);
 
 //start the server
-app.listen(app.get('port'),()=>{
-    console.log('Server on port '+app.get('port'));
+app.listen(app.get("port"), () => {
+  console.log("Server on port " + app.get("port"));
 });
