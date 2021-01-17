@@ -1,14 +1,41 @@
-# StudentOwl-API 
+# StudentOwl-API
 
-API del proyecto
+## API del proyecto
 
-Nuevo cambio
+## Nueva estructura del proyecto
 
-Run
-///
-For run the API execute the comand npm run dev
-Install
-///
-For install the dependecies and node_modules execute the comand npm i or npm installl
+Se _reescribio_ todo el codigo, para dar uso de las nuevas caracteristicas de **JavaScript moderno**, se implemento manejadores de **errores** y **Loggers**, ademas de configurar `.env` correctamente.
 
+## Comandos
 
+### Install depedencies
+
+Para poder usar el proyecto se debe instalar las depensendias
+
+```bash
+npm install
+```
+
+Ademas de configurar las variables de entorno.
+
+Crearemos un archivo `.env` a nivel del proyecto.
+
+> En el archivo `.env.dist` se enecuentra la plantilla de las variables de etorno.
+
+Ya est listo para continuar...
+
+### Development
+
+Para ejecutar el servidor en modo desarrollo ejecutar:
+
+```bash
+npm run dev
+```
+
+### Build
+
+No implementado todavia
+
+```bash
+
+```
