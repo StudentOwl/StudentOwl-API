@@ -3,12 +3,8 @@ import { Schema, model } from "mongoose";
 const componentSchema = new Schema(
   {
     _id: {
-      type: String
-    },
-    code: {
       type: String,
-      required: true,
-      trim: true
+      required: true
     },
     name: {
       type: String,
@@ -16,7 +12,7 @@ const componentSchema = new Schema(
       required: true
     },
     teacher: {
-      type: ObjectId,
+      type: String,
       required: true
     },
     students: {
