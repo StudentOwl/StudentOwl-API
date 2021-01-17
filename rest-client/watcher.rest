@@ -1,0 +1,58 @@
+@hostname = localhost
+@port = 3000
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+@apiVersion = v1.0
+
+###
+GET http://{{host}}/api/{{apiVersion}}/ping HTTP/1.1
+
+### Components endpoints
+@logs = logs
+@component = GTPR01
+@student = jjgahona
+@msStart = 1610253060000
+### 2021-01-9T23:31:00
+@msEnd = 1610427600000
+### 2021-01-12T00:00:00
+@range = {{msStart}}-{{msEnd}}
+
+### Get all logs for an component
+GET http://{{host}}/api/{{apiVersion}}/{{logs}}/{{component}} HTTP/1.1
+
+### Get all logs for an compoennt in range date
+GET http://{{host}}/api/{{apiVersion}}/{{logs}}/{{component}}/{{msStart}} HTTP/1.1
+
+### Get all logs for an compoennt in range date
+GET http://{{host}}/api/{{apiVersion}}/{{logs}}/{{component}}/{{range}} HTTP/1.1
+
+### Get all logs for an compoennt an estudent
+GET http://{{host}}/api/{{apiVersion}}/{{logs}}/{{component}}/{{student}} HTTP/1.1
+
+### Get all logs for an compoennt an estudent in range date
+GET http://{{host}}/api/{{apiVersion}}/{{logs}}/{{component}}/{{student}}/{{msStart}} HTTP/1.1
+
+### Get all logs for an compoennt an estudent in range date
+GET http://{{host}}/api/{{apiVersion}}/{{logs}}/{{component}}/{{student}}/{{range}} HTTP/1.1
+
+
+### Upload new Logs
+POST http://{{host}}/api/{{apiVersion}}/{{logs}}/{{component}}/{{student}}HTTP/1.1
+Content-Type: {{contentType}}
+
+[
+  {
+    "class": "app",
+    "time": 1610318204116,
+    "duration": 14,
+    "applicationName": "explorer",
+    "action": "Desktop"
+  },
+  {
+    "class": "app",
+    "time": 1610328145912,
+    "duration": 20,
+    "applicationName": "msedge",
+    "action": "Navegador edge"
+  }
+]
