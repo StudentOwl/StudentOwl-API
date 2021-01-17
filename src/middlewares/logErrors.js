@@ -71,6 +71,6 @@ export const logErrorHandler = function (err, req, res, next) {
   next(err);
 };
 
-export const defaultHandler = function (req, res, next) {
+export const defaultHandler = function (err, req, res, next) {
   next(HTTPErrors(404));
 };
