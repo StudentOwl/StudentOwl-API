@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema } from "mongoose";
 
 const componentSchema = new Schema(
   {
@@ -24,4 +24,4 @@ const componentSchema = new Schema(
   }
 );
 
-export default model("Component", componentSchema);
+export default componentSchema;

@@ -1,8 +1,9 @@
-import Component from "../models/Component";
-import createHTTPError from "http-errors";
 import { itemNotFound, errorUndefined } from "../utils/commonErrors";
+import generalDb from "../databases/general";
 
 export const findAllComponents = async (req, res, next) => {
+  const Component = (await generalDb).model("Component");
+
   try {
     const components = await Component.find();
     res.json({ status: "Correct", count: components.length, data: components });
@@ -12,6 +13,8 @@ export const findAllComponents = async (req, res, next) => {
 };
 
 export const findOneComponent = async (req, res, next) => {
+  const Component = (await generalDb).model("Component");
+
   try {
     const component = await Component.findById(req.params.id);
 
@@ -26,6 +29,7 @@ export const findOneComponent = async (req, res, next) => {
 };
 
 export const createComponent = async (req, res, next) => {
+  const Component = (await generalDb).model("Component");
   const newComponent = new Component({
     _id: req.body._id,
     name: req.body.name,
@@ -42,6 +46,8 @@ export const createComponent = async (req, res, next) => {
 };
 
 export const updateComponent = async (req, res, next) => {
+  const Component = (await generalDb).model("Component");
+
   try {
     const component = await Component.findByIdAndUpdate(
       req.params.id,
@@ -58,6 +64,8 @@ export const updateComponent = async (req, res, next) => {
 };
 
 export const deleteComponent = async (req, res, next) => {
+  const Component = (await generalDb).model("Component");
+
   try {
     const deleted = await Component.findByIdAndDelete(req.params.id);
     if (deleted) {
@@ -71,6 +79,8 @@ export const deleteComponent = async (req, res, next) => {
 };
 
 export const deleteAllComponent = async (req, res, next) => {
+  const Component = (await generalDb).model("Component");
+
   try {
     const deleteds = await Component.deleteMany({});
     if (deleteds) {
