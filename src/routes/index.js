@@ -40,12 +40,12 @@ router.get('/', (req, res) => {
 router.post('/API/V1.0/:subject_matter/:userName',async(req,res,next)=>{
 //req.body.subject_matter=req.params.subject_matter;
 //req.body.userName=req.params.userName;
-var content = req.body;
+ content = req.body;
 //console.log(req.body);
 const register = new Register();
 register.userName=req.params.userName;
 register.subject_matter=req.params.subject_matter;
-register.register.push(content);
+register.register=content;
 await register.save()
 
 });
