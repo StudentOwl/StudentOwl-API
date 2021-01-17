@@ -1,5 +1,6 @@
 import config from "../config";
 import mongoose from "mongoose";
+import logSchema from "../models/Log";
 
 const logsDb = async () => {
   try {
@@ -10,6 +11,7 @@ const logsDb = async () => {
     });
     console.log("Database is connected to:", conn.name);
 
+    conn.model("GTPR01", logSchema, "GTPR01");
     console.log(`DB ${conn.name} loaded models`);
 
     return conn;

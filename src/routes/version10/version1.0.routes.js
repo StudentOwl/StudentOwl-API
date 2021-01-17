@@ -1,5 +1,6 @@
 import { Router } from "express";
 import ComponentRoutes from "./component.routes";
+import LogRoutes from "./log.routes";
 
 const router = Router();
 
@@ -12,5 +13,7 @@ router.get("/ping", (req, res) => {
 });
 
 router.use("/components", ComponentRoutes);
+
+router.use("/logs", LogRoutes);
 
 export default router;
