@@ -3,6 +3,7 @@ import morgan from "morgan";
 import cors from "cors";
 
 import ApiRoutes from "./routes/api.routes";
+import { defaultHandler, logErrorHandler } from "./middlewares/logErrors";
 
 const app = express();
 
@@ -21,5 +22,9 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api", ApiRoutes);
+
+// Error handlers
+app.use(logErrorHandler);
+app.use(defaultHandler);
 
 export default app;
