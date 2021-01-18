@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import request from "supertest";
 import app from "../src/app";
 
@@ -90,5 +91,12 @@ describe("Component Endpoints", () => {
     expect(res.statusCode).toEqual(200);
     expect(res.body).toHaveProperty("status");
     done();
+  });
+
+  it("Close all", async done => {
+    mongoose.connections.forEach(conn => {
+      await conn.close()
+    });
+    done()
   });
 });
