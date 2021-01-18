@@ -1,37 +1,30 @@
-const path=require('path');
-const express = require('express');
-const morgan = require('morgan');
-const cors = require('cors');
+import express from "express";
+import morgan from "morgan";
+import cors from "cors";
 
-const app= express();
-const MongoClient = require('mongoose');
+import ApiRoutes from "./routes/api.routes";
+import { defaultHandler, logErrorHandler } from "./middlewares/logErrors";
 
-// importing routes
-const indexRoutes= require('./routes/index');
+const app = express();
 
-//connecion a la base de datos
+// Settings
+app.set("port", process.env.PORT || 3000);
 
-MongoClient.connect("mongodb+srv://usuario:usuario123@cluster0.8dtle.mongodb.net/ProyectoStudentOwl?retryWrites=true&w=majority",{ useNewUrlParser: true , useUnifiedTopology: true })
-.then(console.log('DB conectada'))
-.catch (err => console.log(err));
-
-
-//settings
-app.set('port',process.env.PORT || 3000);
-app.set('views',path.join(__dirname+'/views'));
-app.set('view engine','ejs');
-
-//middleware
-app.use(morgan('dev'));
-app.use(express.urlencoded({extended:false}));
+const corsOptions = {};
+app.use(cors(corsOptions));
+app.use(morgan("dev"));
 app.use(express.json());
-//cors para q pueda ser leido por los navegadores
-app.use(cors());
+app.use(express.urlencoded({ extended: false }));
 
-//routes
-app.use('/',indexRoutes);
-
-//start the server
-app.listen(app.get('port'),()=>{
-    console.log('Server on port '+app.get('port'));
+// Routes
+app.get("/", (req, res) => {
+  res.json({ message: "Welcome to StudentOwl-API" });
 });
+
+app.use("/api", ApiRoutes);
+
+// Error handlers
+app.use(logErrorHandler);
+app.use(defaultHandler);
+
+export default app;

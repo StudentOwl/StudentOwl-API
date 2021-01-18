@@ -1,23 +1,49 @@
 {
-  "name": "Student_Owl_API",
+  "name": "studentowl-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "API del proyecto reto StudentOwl - Monitoreo",
   "main": "index.js",
   "scripts": {
-    "start": "node src/app.js",
-    "dev": "nodemon src/app.js "
+    "start": "node dist/index.js",
+    "dev": "nodemon src/index.js --exec babel-node",
+    "build": "babel src --out-dir dist",
+    "test": "jest"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StudentOwl/StudentOwl-API.git"
+  },
+  "author": "StudentOwl",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/StudentOwl/StudentOwl-API/issues"
+  },
+  "homepage": "https://github.com/StudentOwl/StudentOwl-API#readme",
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "verbose": true
+  },
   "dependencies": {
     "cors": "^2.8.5",
-    "ejs": "^3.1.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "mongoose": "^5.11.10",
-    "morgan": "^1.10.0"
+    "http-errors": "^1.8.0",
+    "mongoose": "^5.11.12",
+    "morgan": "^1.10.0",
+    "statuses": "^2.0.1",
+    "winston": "^3.3.3"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/node": "^7.12.10",
+    "@babel/plugin-transform-runtime": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "jest": "^26.6.3",
+    "nodemon": "^2.0.7",
+    "supertest": "^6.1.1"
   }
 }
