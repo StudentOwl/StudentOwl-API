@@ -4,9 +4,9 @@
   "description": "API del proyecto reto StudentOwl - Monitoreo",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/index.js",
-    "dev": "nodemon src/index.js --exec babel-node",
-    "build": "babel src --out-dir dist",
+    "start": "node ./dist/index.js",
+    "dev": "nodemon ./src/index.js --exec babel-node",
+    "build": "babel ./src --out-dir dist",
     "test": "jest"
   },
   "repository": {
