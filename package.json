@@ -4,13 +4,16 @@
   "description": "API del proyecto reto StudentOwl - Monitoreo",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./src/index.js --exec babel-node"
+    "start": "node dist/index.js",
+    "dev": "nodemon src/index.js --exec babel-node",
+    "build": "babel src --out-dir dist",
+    "test": ""
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/StudentOwl/StudentOwl-API.git"
   },
-  "author": "",
+  "author": "StudentOwl",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/StudentOwl/StudentOwl-API/issues"
@@ -30,6 +33,7 @@
     "@babel/cli": "^7.12.10",
     "@babel/core": "^7.12.10",
     "@babel/node": "^7.12.10",
+    "@babel/plugin-transform-runtime": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
     "nodemon": "^2.0.7"
   }
