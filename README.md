@@ -16,6 +16,12 @@ Para poder usar el proyecto se debe instalar las depensendias
 npm install
 ```
 
+Si NPM no instala las dependencias de desarrollo como `babel-core`, ejecuta el siguiente comando:
+
+```bash
+npm install --dev
+```
+
 Ademas de configurar las variables de entorno.
 
 Crearemos un archivo `.env` a nivel del proyecto.
