@@ -68,13 +68,38 @@ A continuación se muestra el diagrama del estado actual de los endpoints existe
 
 ### Definicion de los endpoints
 
-- `/api/v1.0/ping`
-- `/api/v1.0/components/all`
-- `/api/v1.0/components/new`
-- `/api/v1.0/components/AAAA00`
-- `/api/v1.0/AAAA00`
-- `/api/v1.0/AAAA00/1234567890123`
-- `/api/v1.0/AAAA00/1234567890123-1234567890123`
-- `/api/v1.0/AAAA00/ablopez`
-- `/api/v1.0/AAAA00/ablopez/1234567890123`
-- `/api/v1.0/AAAA00/ablopez/1234567890123-1234567890123`
+Comprueba que la API este _online_
+
+> `/api/v1.0/ping`
+
+Devuelve todos los componentes academicos
+
+> `/api/v1.0/components/all`
+
+Crea un nuevo componente academico
+
+> `/api/v1.0/components/new`
+
+Devuelve un componente academico
+
+> `/api/v1.0/components/AAAA00`
+
+Devuelve todos los _logs_ del componente
+
+> `/api/v1.0/AAAA00`
+
+Filtra los _logs_ del componente por tiempo
+
+> `/api/v1.0/AAAA00/1234567890123`
+
+> `/api/v1.0/AAAA00/1234567890123>1234567890123`
+
+Devuelve todos los _logs_ del estudiante en un componente
+
+> `/api/v1.0/AAAA00/ablopez`
+
+Filtra los _logs_ del estudiante en un componente por tiempo
+
+> `/api/v1.0/AAAA00/ablopez/1234567890123`
+
+> `/api/v1.0/AAAA00/ablopez/1234567890123-1234567890123`
