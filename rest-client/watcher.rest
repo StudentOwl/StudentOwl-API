@@ -56,3 +56,6 @@ Content-Type: {{contentType}}
     "action": "Navegador edge"
   }
 ]
+
+### Get all logs for an compoennt an estudent in range date
+GET http://{{host}}/api/{{apiVersion}}/{{logs}}/{{component}}/{{student}}/?msStart={{msStart}} HTTP/1.1
