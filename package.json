@@ -23,7 +23,8 @@
     "testEnvironment": "node",
     "coveragePathIgnorePatterns": [
       "/node_modules/"
-    ]
+    ],
+    "verbose": true
   },
   "dependencies": {
     "cors": "^2.8.5",
