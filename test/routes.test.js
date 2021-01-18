@@ -93,10 +93,10 @@ describe("Component Endpoints", () => {
     done();
   });
 
-  it("Close all", async done => {
-    mongoose.connections.forEach(conn => {
-      await conn.close()
+  it("Close all connections", async done => {
+    mongoose.connections.forEach(async conn => {
+      await conn.close();
     });
-    done()
+    done();
   });
 });
