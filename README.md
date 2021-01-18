@@ -109,3 +109,7 @@ Filtra los _logs_ del estudiante en un componente por tiempo
 > `/api/v1.0/AAAA00/ablopez/1234567890123`
 
 > `/api/v1.0/AAAA00/ablopez/1234567890123-1234567890123`
+
+## Deploy in
+
+[`Heroku`](https://api-studentowl.herokuapp.com/)
