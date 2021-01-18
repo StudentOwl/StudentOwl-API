@@ -32,10 +32,18 @@ Para ejecutar el servidor en modo desarrollo ejecutar:
 npm run dev
 ```
 
-### Build
+### Test
 
-No implementado todavia
+Para comprobar las pruebas unitarias
 
 ```bash
+npm run test
+```
 
+### Build
+
+Para compilar el proyecto ejecutar:
+
+```bash
+npm run build
 ```
