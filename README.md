@@ -90,25 +90,47 @@ Devuelve un componente academico
 
 > `/api/v1.0/components/AAAA00`
 
-Devuelve todos los _logs_ del componente
+Devuelve todos los _logs_
 
-> `/api/v1.0/AAAA00`
+> `/api/v1.0/logs/all`
 
-Filtra los _logs_ del componente por tiempo
+Filtra los _logs_ por componente, estudiante y tiempo
 
-> `/api/v1.0/AAAA00/1234567890123`
+> `/api/v1.0/logs/all?component=AAAA00`
 
-> `/api/v1.0/AAAA00/1234567890123>1234567890123`
+> `/api/v1.0/logs/all?student=ablopez`
 
-Devuelve todos los _logs_ del estudiante en un componente
+> `/api/v1.0/logs/all?component=AAAA00&student=ablopez`
 
-> `/api/v1.0/AAAA00/ablopez`
+> `/api/v1.0/logs/all?msStart=1234567890123`
 
-Filtra los _logs_ del estudiante en un componente por tiempo
+> `/api/v1.0/logs/all?msStart=1234567890123&msEnd=1234567890123`
 
-> `/api/v1.0/AAAA00/ablopez/1234567890123`
+> `/api/v1.0/logs/all?component=AAAA00&student=ablopez&msStart=1234567890123&msEnd=1234567890123`
 
-> `/api/v1.0/AAAA00/ablopez/1234567890123-1234567890123`
+Registra una lista de nuevos _logs_
+
+> `/api/v1.0/logs/new`
+
+Devuelve todos los _logs_ del componente AAAA00
+
+> `/api/v1.0/logs/AAAA00`
+
+Filtra los _logs_ del componente AAAA00 por tiempo
+
+> `/api/v1.0/logs/AAAA00?msStart=1234567890123`
+
+> `/api/v1.0/logs/AAAA00?msStart=1234567890123&msEnd=1234567890123`
+
+Devuelve todos los _logs_ del componente AAAA00 pertenecientes al estudiante ablopez
+
+> `/api/v1.0/logs/AAAA00/ablopez`
+
+Filtra los _logs_ del componente AAAA00 pertenecientes al estudiante ablopez segun un periodo temporal
+
+> `/api/v1.0/logs/AAAA00/ablopez?msStart=1234567890123`
+
+> `/api/v1.0/logs/AAAA00/ablopez?msStart=1234567890123&msEnd=1234567890123`
 
 ## Deploy in
 
