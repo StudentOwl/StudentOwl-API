@@ -45,12 +45,6 @@ export const saveNewLogs = async (req, res, next) => {
     next(noValues(body.length));
   }
 
-  var values = body.map(x => {
-    var ot = Object.assign(x);
-    ot["student"] = student;
-    return ot;
-  });
-
   try {
     const logs = await Log.insertMany(values);
 

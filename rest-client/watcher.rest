@@ -46,13 +46,17 @@ Content-Type: {{contentType}}
     "time": 1610318204116,
     "duration": 14,
     "applicationName": "explorer",
-    "action": "Desktop"
+    "action": "Desktop",
+    "student": "scoowy",
+    "component": "GTPR01"
   },
   {
     "class": "app",
     "time": 1610328145912,
     "duration": 20,
     "applicationName": "msedge",
-    "action": "Navegador edge"
+    "action": "Navegador edge",
+    "student": "scoowy",
+    "component": "GTPR01"
   }
 ]

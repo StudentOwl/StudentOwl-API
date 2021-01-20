@@ -17,5 +17,5 @@ export const createCorrect = (res, values) => {
 };
 
 export const createIncorrect = () => {
-  return res.status(400).json({ status: "No created" });
+  return createHTTPError(400, "No crated");
 };
