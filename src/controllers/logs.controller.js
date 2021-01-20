@@ -32,7 +32,7 @@ export const findLogs = async (req, res, next) => {
     filter["time"]["$lt"] = new Date(parseInt(req.query.msEnd));
   }
 
-  console.log(filter);
+  // console.log(filter);
   try {
     const logs = await Log.find(filter);
     res.json({ status: "Correct", count: logs.length, data: logs });
@@ -66,8 +66,11 @@ export const saveNewLogs = async (req, res, next) => {
 export const deleteAllLogs = async (req, res, next) => {
   try {
     const deleteds = await Log.deleteMany({});
+    // console.log(deleteds);
     if (deleteds) {
-      res.json({ status: `Deleted ${deleteds.length} items` });
+      res.json({ status: `Deleted ${deleteds["deletedCount"]} items` });
     }
-  } catch (err) {}
+  } catch (err) {
+    next(errorUndefined(err));
+  }
 };
