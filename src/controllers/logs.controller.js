@@ -5,29 +5,34 @@ import {
   createCorrect,
   createIncorrect
 } from "../utils/commonErrors";
-import logsDb from "../databases/logs";
+// import logsDb from "../databases/logs";
+import Log from "../models/Log";
 
-export const capitalizeComponentId = async (req, res, next, component) => {
-  req.params.component = component.toUpperCase();
-  next();
-};
-
-export const findAllLogsByComponent = async (req, res, next) => {
-  const Log = (await logsDb).model(req.params.component);
+export const findLogs = async (req, res, next) => {
+  // const Log = (await logsDb).model(req.params.component);
 
   const filter = {};
 
+  if (req.params.component) {
+    filter["component"] = req.params.component;
+  }
   if (req.params.student) {
     filter["student"] = req.params.student;
   }
-  if (req.params.msStart) {
-    filter["time"] = { $gte: new Date(parseInt(req.params.msStart)) };
+  if (req.query.component) {
+    filter["component"] = req.query.component;
   }
-  if (req.params.msEnd) {
-    filter["time"]["$lt"] = new Date(parseInt(req.params.msEnd));
+  if (req.query.student) {
+    filter["student"] = req.query.student;
+  }
+  if (req.query.msStart) {
+    filter["time"] = { $gte: new Date(parseInt(req.query.msStart)) };
+  }
+  if (req.query.msEnd) {
+    filter["time"]["$lt"] = new Date(parseInt(req.query.msEnd));
   }
 
-  console.log(filter);
+  // console.log(filter);
   try {
     const logs = await Log.find(filter);
     res.json({ status: "Correct", count: logs.length, data: logs });
@@ -37,7 +42,7 @@ export const findAllLogsByComponent = async (req, res, next) => {
 };
 
 export const saveNewLogs = async (req, res, next) => {
-  const Log = (await logsDb).model(req.params.component);
+  // const Log = (await logsDb).model(req.params.component);
   const body = Array.isArray(req.body) ? req.body : [];
   const student = req.params.student;
 
@@ -45,14 +50,8 @@ export const saveNewLogs = async (req, res, next) => {
     next(noValues(body.length));
   }
 
-  var values = body.map(x => {
-    var ot = Object.assign(x);
-    ot["student"] = student;
-    return ot;
-  });
-
   try {
-    const logs = await Log.insertMany(values);
+    const logs = await Log.insertMany(body);
 
     if (logs) {
       createCorrect(res, logs);
@@ -64,81 +63,14 @@ export const saveNewLogs = async (req, res, next) => {
   }
 };
 
-// export const findOneComponent = async (req, res, next) => {
-//   const Component = (await logsDb).model("Component");
-
-//   try {
-//     const component = await Component.findById(req.params.id);
-
-//     if (component) {
-//       res.json({ status: "Correct", data: component });
-//     } else {
-//       next(itemNotFound(req.params.id));
-//     }
-//   } catch (err) {
-//     next(errorUndefined(err));
-//   }
-// };
-
-// export const createComponent = async (req, res, next) => {
-//   const Component = (await logsDb).model("Component");
-//   const newComponent = new Component({
-//     _id: req.body._id,
-//     name: req.body.name,
-//     teacher: req.body.teacher,
-//     students: req.body.students ? req.body.students : []
-//   });
-
-//   try {
-//     await newComponent.save();
-//     res.status(201).json({ status: "Created", data: newComponent });
-//   } catch (err) {
-//     next(errorUndefined(err));
-//   }
-// };
-
-// export const updateComponent = async (req, res, next) => {
-//   const Component = (await logsDb).model("Component");
-
-//   try {
-//     const component = await Component.findByIdAndUpdate(
-//       req.params.id,
-//       req.body
-//     );
-//     if (component) {
-//       res.json({ status: "Updated", data: component });
-//     } else {
-//       next(itemNotFound(req.params.id));
-//     }
-//   } catch (err) {
-//     next(errorUndefined(err));
-//   }
-// };
-
-// export const deleteComponent = async (req, res, next) => {
-//   const Component = (await logsDb).model("Component");
-
-//   try {
-//     const deleted = await Component.findByIdAndDelete(req.params.id);
-//     if (deleted) {
-//       res.json({ status: `Deleted ${deleted._id} item` });
-//     } else {
-//       next(itemNotFound(req.params.id));
-//     }
-//   } catch (err) {
-//     next(errorUndefined(err));
-//   }
-// };
-
-// export const deleteAllComponent = async (req, res, next) => {
-//   const Component = (await logsDb).model("Component");
-
-//   try {
-//     const deleteds = await Component.deleteMany({});
-//     if (deleteds) {
-//       res.json({ status: `Deleted ${deleteds.length} items` });
-//     }
-//   } catch (err) {
-//     next(errorUndefined(err));
-//   }
-// };
+export const deleteAllLogs = async (req, res, next) => {
+  try {
+    const deleteds = await Log.deleteMany({});
+    // console.log(deleteds);
+    if (deleteds) {
+      res.json({ status: `Deleted ${deleteds["deletedCount"]} items` });
+    }
+  } catch (err) {
+    next(errorUndefined(err));
+  }
+};

@@ -1,8 +1,9 @@
 import { itemNotFound, errorUndefined } from "../utils/commonErrors";
-import generalDb from "../databases/general";
+// import generalDb from "../databases/general";
+import Component from "../models/Component";
 
 export const findAllComponents = async (req, res, next) => {
-  const Component = (await generalDb).model("Component");
+  // const Component = (await generalDb).model("Component");
 
   try {
     const components = await Component.find();
@@ -13,7 +14,7 @@ export const findAllComponents = async (req, res, next) => {
 };
 
 export const findOneComponent = async (req, res, next) => {
-  const Component = (await generalDb).model("Component");
+  // const Component = (await generalDb).model("Component");
 
   try {
     const component = await Component.findById(req.params.id);
@@ -29,7 +30,7 @@ export const findOneComponent = async (req, res, next) => {
 };
 
 export const createComponent = async (req, res, next) => {
-  const Component = (await generalDb).model("Component");
+  // const Component = (await generalDb).model("Component");
   const newComponent = new Component({
     _id: req.body._id,
     name: req.body.name,
@@ -46,7 +47,7 @@ export const createComponent = async (req, res, next) => {
 };
 
 export const updateComponent = async (req, res, next) => {
-  const Component = (await generalDb).model("Component");
+  // const Component = (await generalDb).model("Component");
 
   try {
     const component = await Component.findByIdAndUpdate(
@@ -64,7 +65,7 @@ export const updateComponent = async (req, res, next) => {
 };
 
 export const deleteComponent = async (req, res, next) => {
-  const Component = (await generalDb).model("Component");
+  // const Component = (await generalDb).model("Component");
 
   try {
     const deleted = await Component.findByIdAndDelete(req.params.id);
@@ -79,7 +80,7 @@ export const deleteComponent = async (req, res, next) => {
 };
 
 export const deleteAllComponent = async (req, res, next) => {
-  const Component = (await generalDb).model("Component");
+  // const Component = (await generalDb).model("Component");
 
   try {
     const deleteds = await Component.deleteMany({});

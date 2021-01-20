@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import request from "supertest";
 import app from "../src/app";
+import "../src/database";
 
 describe("Component Endpoints", () => {
   it("should get all components", async done => {
@@ -94,9 +95,7 @@ describe("Component Endpoints", () => {
   });
 
   it("Close all connections", async done => {
-    mongoose.connections.forEach(async conn => {
-      await conn.close();
-    });
+    await mongoose.connection.close();
     done();
   });
 });
