@@ -21,10 +21,10 @@ GET http://{{host}}/api/{{apiVersion}}/ping HTTP/1.1
 GET http://{{host}}/api/{{apiVersion}}/{{logs}}/{{component}} HTTP/1.1
 
 ### Get all logs for an compoennt in range date
-GET http://{{host}}/api/{{apiVersion}}/{{logs}}/{{component}}/{{msStart}} HTTP/1.1
+GET http://{{host}}/api/{{apiVersion}}/{{logs}}/{{component}}?msStart={{msStart}} HTTP/1.1
 
 ### Get all logs for an compoennt in range date
-GET http://{{host}}/api/{{apiVersion}}/{{logs}}/{{component}}/{{range}} HTTP/1.1
+GET http://{{host}}/api/{{apiVersion}}/{{logs}}/{{component}}?masStart={{range}} HTTP/1.1
 
 ### Get all logs for an compoennt an estudent
 GET http://{{host}}/api/{{apiVersion}}/{{logs}}/{{component}}/{{student}} HTTP/1.1
@@ -35,9 +35,14 @@ GET http://{{host}}/api/{{apiVersion}}/{{logs}}/{{component}}/{{student}}/{{msSt
 ### Get all logs for an compoennt an estudent in range date
 GET http://{{host}}/api/{{apiVersion}}/{{logs}}/{{component}}/{{student}}/{{range}} HTTP/1.1
 
+###
+GET http://{{host}}/api/{{apiVersion}}/{{logs}}/all HTTP/1.1
+
+###
+DELETE http://{{host}}/api/{{apiVersion}}/{{logs}}/all HTTP/1.1
 
 ### Upload new Logs
-POST http://{{host}}/api/{{apiVersion}}/{{logs}}/{{component}}/{{student}} HTTP/1.1
+POST http://{{host}}/api/{{apiVersion}}/{{logs}}/new HTTP/1.1
 Content-Type: {{contentType}}
 
 [
