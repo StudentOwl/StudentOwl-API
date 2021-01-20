@@ -5,7 +5,8 @@ import {
   createCorrect,
   createIncorrect
 } from "../utils/commonErrors";
-import logsDb from "../databases/logs";
+// import logsDb from "../databases/logs";
+import Log from "../models/Log";
 
 export const capitalizeComponentId = async (req, res, next, component) => {
   req.params.component = component.toUpperCase();
@@ -13,7 +14,7 @@ export const capitalizeComponentId = async (req, res, next, component) => {
 };
 
 export const findAllLogsByComponent = async (req, res, next) => {
-  const Log = (await logsDb).model(req.params.component);
+  // const Log = (await logsDb).model(req.params.component);
 
   const filter = {};
 
@@ -37,7 +38,7 @@ export const findAllLogsByComponent = async (req, res, next) => {
 };
 
 export const saveNewLogs = async (req, res, next) => {
-  const Log = (await logsDb).model(req.params.component);
+  // const Log = (await logsDb).model(req.params.component);
   const body = Array.isArray(req.body) ? req.body : [];
   const student = req.params.student;
 
@@ -46,7 +47,7 @@ export const saveNewLogs = async (req, res, next) => {
   }
 
   try {
-    const logs = await Log.insertMany(values);
+    const logs = await Log.insertMany(body);
 
     if (logs) {
       createCorrect(res, logs);

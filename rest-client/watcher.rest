@@ -37,7 +37,7 @@ GET http://{{host}}/api/{{apiVersion}}/{{logs}}/{{component}}/{{student}}/{{rang
 
 
 ### Upload new Logs
-POST http://{{host}}/api/{{apiVersion}}/{{logs}}/{{component}}/{{student}}HTTP/1.1
+POST http://{{host}}/api/{{apiVersion}}/{{logs}}/{{component}}/{{student}} HTTP/1.1
 Content-Type: {{contentType}}
 
 [

@@ -1,4 +1,4 @@
-import { Schema } from "mongoose";
+import { Schema, model } from "mongoose";
 
 const logSchema = new Schema(
   {
@@ -25,6 +25,10 @@ const logSchema = new Schema(
     student: {
       type: String,
       required: true
+    },
+    component: {
+      type: String,
+      required: true
     }
   },
   {
@@ -32,4 +36,4 @@ const logSchema = new Schema(
   }
 );
 
-export default logSchema;
+export default model("log", logSchema);
