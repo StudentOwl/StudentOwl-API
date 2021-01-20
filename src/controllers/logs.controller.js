@@ -8,18 +8,22 @@ import {
 // import logsDb from "../databases/logs";
 import Log from "../models/Log";
 
-export const capitalizeComponentId = async (req, res, next, component) => {
-  req.params.component = component.toUpperCase();
-  next();
-};
-
-export const findAllLogsByComponent = async (req, res, next) => {
+export const findLogs = async (req, res, next) => {
   // const Log = (await logsDb).model(req.params.component);
 
   const filter = {};
 
+  if (req.params.component) {
+    filter["component"] = req.params.component;
+  }
   if (req.params.student) {
     filter["student"] = req.params.student;
+  }
+  if (req.query.component) {
+    filter["component"] = req.query.component;
+  }
+  if (req.query.student) {
+    filter["student"] = req.query.student;
   }
   if (req.query.msStart) {
     filter["time"] = { $gte: new Date(parseInt(req.query.msStart)) };
@@ -57,4 +61,13 @@ export const saveNewLogs = async (req, res, next) => {
   } catch (err) {
     next(errorUndefined(err));
   }
+};
+
+export const deleteAllLogs = async (req, res, next) => {
+  try {
+    const deleteds = await Log.deleteMany({});
+    if (deleteds) {
+      res.json({ status: `Deleted ${deleteds.length} items` });
+    }
+  } catch (err) {}
 };
