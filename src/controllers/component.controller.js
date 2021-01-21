@@ -91,3 +91,17 @@ export const deleteAllComponent = async (req, res, next) => {
     next(errorUndefined(err));
   }
 };
+
+export const findOneComponentExtra = async id => {
+  try {
+    const component = await Component.findById(id);
+
+    if (component) {
+      return component;
+    } else {
+      return null;
+    }
+  } catch (err) {
+    return null;
+  }
+};

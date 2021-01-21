@@ -67,3 +67,6 @@ Content-Type: {{contentType}}
   "teacher": "racorrea2",
   "students": []
 }
+
+### Get all students from a component
+GET http://{{host}}/api/{{apiVersion}}/students/GTPR01 HTTP/1.1
