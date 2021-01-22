@@ -38,6 +38,9 @@ GET http://{{host}}/api/{{apiVersion}}/{{logs}}/{{component}}/{{student}}/{{rang
 ###
 GET http://{{host}}/api/{{apiVersion}}/{{logs}}/all HTTP/1.1
 
+### Get all logs for an compoennt an estudent in range date
+GET http://{{host}}/api/v1.0/logs/data/all?component=GTPR01&msStart=1610064000000&msEnd=1611273600000 HTTP/1.0
+
 ###
 DELETE http://{{host}}/api/{{apiVersion}}/{{logs}}/all HTTP/1.1
 
