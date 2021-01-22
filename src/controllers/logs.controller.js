@@ -8,9 +8,7 @@ import {
 // import logsDb from "../databases/logs";
 import Log from "../models/Log";
 
-export const findLogs = async (req, res, next) => {
-  // const Log = (await logsDb).model(req.params.component);
-
+const findLogsFn = async req => {
   const filter = {};
 
   if (req.params.component) {
@@ -35,9 +33,21 @@ export const findLogs = async (req, res, next) => {
   // console.log(filter);
   try {
     const logs = await Log.find(filter);
-    res.json({ status: "Correct", count: logs.length, data: logs });
+    return { status: "Correct", count: logs.length, data: logs };
   } catch (err) {
-    next(errorUndefined(err));
+    return errorUndefined(err);
+  }
+};
+
+export const findLogs = async (req, res, next) => {
+  // const Log = (await logsDb).model(req.params.component);
+
+  const respuesta = await findLogsFn(req);
+
+  if (respuesta) {
+    res.json(respuesta);
+  } else {
+    next(respuesta);
   }
 };
 
@@ -72,5 +82,37 @@ export const deleteAllLogs = async (req, res, next) => {
     }
   } catch (err) {
     next(errorUndefined(err));
+  }
+};
+
+export const getApplicationData = async (req, res, next) => {
+  // const Log = (await logsDb).model(req.params.component);
+
+  const respuesta = await findLogsFn(req);
+
+  if (respuesta) {
+    var dataProcc = {};
+    var labels = [];
+    // var data = [];
+
+    labels = [
+      ...new Set(
+        respuesta.data.map(function (log) {
+          return log.applicationName;
+        })
+      )
+    ];
+
+    labels.forEach(label => {
+      dataProcc[label] = 0;
+    });
+
+    respuesta.data.forEach(log => {
+      dataProcc[log.applicationName] += log.duration;
+    });
+
+    res.json(dataProcc);
+  } else {
+    next(respuesta);
   }
 };
