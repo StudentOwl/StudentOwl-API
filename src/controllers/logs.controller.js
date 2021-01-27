@@ -7,32 +7,11 @@ import {
 } from "../utils/commonErrors";
 // import logsDb from "../databases/logs";
 import Log from "../models/Log";
+import * as LogDAO from "../dao/log.dao";
 
 const findLogsFn = async req => {
-  const filter = {};
-
-  if (req.params.component) {
-    filter["component"] = req.params.component;
-  }
-  if (req.params.student) {
-    filter["student"] = req.params.student;
-  }
-  if (req.query.component) {
-    filter["component"] = req.query.component;
-  }
-  if (req.query.student) {
-    filter["student"] = req.query.student;
-  }
-  if (req.query.msStart) {
-    filter["time"] = { $gte: new Date(parseInt(req.query.msStart)) };
-  }
-  if (req.query.msEnd) {
-    filter["time"]["$lt"] = new Date(parseInt(req.query.msEnd));
-  }
-
-  // console.log(filter);
   try {
-    const logs = await Log.find(filter);
+    const logs = await LogDAO.findLogs(req.query);
     return { status: "Correct", count: logs.length, data: logs };
   } catch (err) {
     return errorUndefined(err);
@@ -114,5 +93,23 @@ export const getApplicationData = async (req, res, next) => {
     res.json(dataProcc);
   } else {
     next(respuesta);
+  }
+};
+
+export const totalTimes = async (req, res, next) => {
+  try {
+    const logs = await LogDAO.timePerDate(req.query);
+    res.json({ status: "Correct", count: logs.length, data: logs });
+  } catch (err) {
+    next(errorUndefined(err));
+  }
+};
+
+export const totalHours = async (req, res, next) => {
+  try {
+    const logs = await LogDAO.timePerHour(req.query);
+    res.json({ status: "Correct", count: logs.length, data: logs });
+  } catch (err) {
+    next(errorUndefined(err));
   }
 };

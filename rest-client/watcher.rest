@@ -26,20 +26,25 @@ GET http://{{host}}/api/{{apiVersion}}/{{logs}}/{{component}}?msStart={{msStart}
 ### Get all logs for an compoennt in range date
 GET http://{{host}}/api/{{apiVersion}}/{{logs}}/{{component}}?masStart={{range}} HTTP/1.1
 
+
 ### Get all logs for an compoennt an estudent
-GET http://{{host}}/api/{{apiVersion}}/{{logs}}/{{component}}/{{student}} HTTP/1.1
-
-### Get all logs for an compoennt an estudent in range date
-GET http://{{host}}/api/{{apiVersion}}/{{logs}}/{{component}}/{{student}}/{{msStart}} HTTP/1.1
-
-### Get all logs for an compoennt an estudent in range date
-GET http://{{host}}/api/{{apiVersion}}/{{logs}}/{{component}}/{{student}}/{{range}} HTTP/1.1
+GET http://{{host}}/api/{{apiVersion}}/{{logs}}/all?component={{component}}&student={{student}}&masStart={{msStart}} HTTP/1.1
 
 ###
 GET http://{{host}}/api/{{apiVersion}}/{{logs}}/all HTTP/1.1
 
 ### Get all logs for an compoennt an estudent in range date
-GET http://{{host}}/api/v1.0/logs/data/all?component=GTPR01&msStart=1610064000000&msEnd=1611273600000 HTTP/1.0
+GET http://{{host}}/api/v1.0/logs/data/applicationuse?component=GTPR01&msStart=1610064000000 HTTP/1.0
+
+### Get all logs for an compoennt an estudent in range date
+GET http://{{host}}/api/v1.0/logs/all?component=GTPR01&msStart=1610064000000 HTTP/1.0
+
+### Get all logs for an compoennt an estudent in range date
+GET http://{{host}}/api/v1.0/logs/data/timeperday?component=GTPR01&msStart=1610064000000 HTTP/1.0
+
+### Get all logs for an compoennt an estudent in range date
+GET http://{{host}}/api/v1.0/logs/data/timeperhour?component=GTPR01&msStart=1610064000000 HTTP/1.0
+
 
 ###
 DELETE http://{{host}}/api/{{apiVersion}}/{{logs}}/all HTTP/1.1
