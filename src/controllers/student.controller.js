@@ -21,3 +21,14 @@ export const getAllStudents = async (req, res, next) => {
     next(errorUndefined(err));
   }
 };
+
+export const getOneStudent = async (req, res, next) => {
+  const filter = {};
+
+  try {
+    const student = await Student.findOne({ username: req.query.student });
+    res.json({ status: "correcto", data: student });
+  } catch (err) {
+    next(errorUndefined(err));
+  }
+};
